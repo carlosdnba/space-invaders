@@ -10,15 +10,19 @@
 <body>
 
     <div class="score">Score: <span id="result">0</span></div>
-    <!-- 15 X 15 divs -->
-    
-    <div class="grid">
 
+    <!-- 15 X 15 divs -->    
+    <div class="grid">
     </div>
-    
+
+    <div class="buttonsRow">
+        <button class="left">Esquerda</button>
+        <button class="shoot">Atirar!</button>
+        <button class="right">Direita</button>
+    </div>
+
     <script>
     // divs generator
-
         for (let i = 0; i < 15; i++) {
             document.querySelector('.grid').innerHTML = document.querySelector('.grid').innerHTML + '<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>'
         }

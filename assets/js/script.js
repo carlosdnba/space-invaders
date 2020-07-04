@@ -124,6 +124,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    document.querySelector('.left').addEventListener('click', () => {
+        squares[currentShooterIndex].classList.remove('shooter');
+        if (currentShooterIndex % width !== 0) currentShooterIndex -= 1;
+        squares[currentShooterIndex].classList.add('shooter');
+    });
+    document.querySelector('.right').addEventListener('click', () => {
+        squares[currentShooterIndex].classList.remove('shooter');
+        if (currentShooterIndex % width < width -1) currentShooterIndex += 1;
+        squares[currentShooterIndex].classList.add('shooter');
+    });
+    
+    document.querySelector('.shoot').addEventListener('click', () => {
+        let laserId;
+        let currentLaserIndex = currentShooterIndex;
+
+        // move the laser from the shooter to the alien
+        function moveLaser() {
+            squares[currentLaserIndex].classList.remove('laser');
+            currentLaserIndex -= width;
+            squares[currentLaserIndex].classList.add('laser');
+            
+            if (squares[currentLaserIndex].classList.contains('invader')) {
+                squares[currentLaserIndex].classList.remove('laser');
+                squares[currentLaserIndex].classList.remove('invader');
+                squares[currentLaserIndex].classList.add('boom');
+
+                setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 250);
+                clearInterval(laserId);
+
+                const alienTakenDown = alienInvaders.indexOf(currentLaserIndex);
+                alienInvadersTakenDown.push(alienTakenDown);
+                result++;
+                resultDisplay.textContent = result;
+            }
+
+            if (currentLaserIndex < width) {
+                clearInterval(laserId);
+                setTimeout(() => squares[currentLaserIndex].classList.remove('laser'), 100);
+            }
+        }
+
+        laserId = setInterval(moveLaser, 100);
+    });
+
     document.addEventListener('keyup', shoot);
 
 });
