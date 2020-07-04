@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(alienInvadersTakenDown.length)
             console.log(alienInvaders.length)
             document.querySelector('.score').textContent = 'Você venceu!';
-            document.querySelector('.score').style.color = '#5a2321';
             clearInterval(invaderId)
         }
     }
