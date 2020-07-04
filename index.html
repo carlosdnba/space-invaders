@@ -3,8 +3,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" charset="utf-8"></script>
 </head>
 <body>
+
+    <div class="score">Score: <span id="result">0</span></div>
+    <!-- 15 X 15 divs -->
     
+    <div class="grid">
+
+    </div>
+<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <script>
+    // divs generator
+
+        for (let i = 0; i < 15; i++) {
+            document.querySelector('.grid').innerHTML = document.querySelector('.grid').innerHTML + '<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>'
+        }
+    </script>
 </body>
 </html>
