@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const squares = document.querySelectorAll('.grid div');
     const resultDisplay = document.querySelector('#result');
+
     let width = 15;
     let currentShooterIndex = 202;
     let currentInvaderIndex = 0;
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //define the alien invaders
     const alienInvaders = [
-         0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
         15,16,17,18,19,20,21,22,23,24,
         30,31,32,33,34,35,36,37,38,39
     ];
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if ((leftEdge && direction === -1) || (rightEdge && direction == 1)) {
             direction = width;
         } else if (direction === width) {
-           leftEdge ? direction = 1 : direction = -1;
+            leftEdge ? direction = 1 : direction = -1;
         }
 
         for (let i = 0; i <= alienInvaders.length - 1; i++){
@@ -63,14 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // game over cases 
         if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
-            resultDisplay.textContent = 'Game over';
+            document.querySelector('.score').textContent = 'Fim de jogo';
+            document.querySelector('.score').style.color = '#940a04';
             squares[currentShooterIndex].classList.add('boom');
             clearInterval(invaderId);
         }
         
         for (let i = 0; i <= alienInvaders.length - 1; i++) {
             if(alienInvaders[i] > (squares.length - (width - 1))) {
-                resultDisplay.textContent = 'Game over';
+                document.querySelector('.score').textContent = 'Fim de jogo';
+                document.querySelector('.score').style.color = '#940a04';
                 clearInterval(invaderId);
             }
         }
@@ -79,12 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if(alienInvadersTakenDown.length === alienInvaders.length) {
             console.log(alienInvadersTakenDown.length)
             console.log(alienInvaders.length)
-            resultDisplay.textContent = 'You Win'
+            document.querySelector('.score').textContent = 'Você venceu!';
+            document.querySelector('.score').style.color = '#5a2321';
             clearInterval(invaderId)
         }
     }
 
-    invaderId = setInterval(moveInvaders, 500);
+    invaderId = setInterval(moveInvaders, 400);
 
     // shoot at aliens
     function shoot(e) {
@@ -169,5 +173,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('keyup', shoot);
-
 });
